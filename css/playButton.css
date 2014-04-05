@@ -6,11 +6,12 @@
 }
 /*Container for audio player*/
 #audioplayer{
-	width: 460px;
+	width: 480px;
 	height: 60px;
 	margin: auto;
 	margin-top: 50px;
-	background: #00ff76;
+	background: rgba(77, 133, 222, 0.62);
+	border-radius: 15px;
 }
 /* Play/Pause Button */
 #pButton{
@@ -23,23 +24,24 @@
 	float:left;
 }
 /*Classes for play/pause button background*/
-.play{background: url('../images/play.png') rgba(10,200,100,.5);}
-.pause{background: url('../images/pause.png') rgba(10,200,100,.5);}
+.play{background: url('../images/play.png') ;}
+.pause{background: url('../images/pause.png') ;}
 
 #gutter{
 	width: 400px;
 	height: 20px;
-	background: green;
+	background: #4200f7;
 	margin-top: 20px;
 	float: left;
+	border-radius: 15px;
 }
 /*Grabable Handle*/
 #handle{
-
+	cursor: pointer;
 	width: 18px;
 	height: 18px;
 	border-radius: 50%;
 	margin-top: 1px;
-	background: black;
+	background: rgba(0, 255, 196, 0.82);
 }
 

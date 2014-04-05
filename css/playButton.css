@@ -1,0 +1,38 @@
+/* Absolute Center */
+.abs-center{
+	margin: auto;
+	position: fixed;
+	top:0; right:0; bottom:0; left:0;
+}
+
+/* Play/Pause Button */
+#pButton{
+	border-radius: 50%;
+	height:100px; 
+	width: 100px;
+	border: none;
+	background-size: 50% 50%;
+	background-repeat: no-repeat;
+	background-position: center;
+}
+
+.play{background: url('../images/play.png') rgba(10,200,100,.5);}
+.pause{background: url('../images/pause.png') rgba(10,200,100,.5);}
+
+#scrubber{
+	width: 400px;
+	height: 60px;
+	margin: auto;
+	margin-top: 100px;
+	background: green;
+}
+#handle{
+	position: relative;
+	top: 25px;
+	width: 15px;
+	height: 15px;
+	border-radius: 50%;
+
+	background: cyan;
+}
+

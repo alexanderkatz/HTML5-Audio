@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="">
+
+<head>
+	<meta charset="utf-8">
+	<title>An Implausibility of News</title>
+	<link rel="stylesheet" type="text/css" href="css/reset.css">
+	<link rel="stylesheet" type="text/css" href="css/playButton.css">
+	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+
+</head>
+
+<body>
+	<audio id="music" preload="true">
+		<source src="/music/onlyidreamwithyou.mp3">
+			<source src="/music/onlyidreamwithyou.ogg">
+	</audio>
+	<!--Button for Playing and Pausing-->
+	<button id="pButton" class="abs-center play" onclick="play()"></button>
+
+	<div id="scrubber">
+		<div id="handle"></div>
+	</div>
+
+	<script>
+		var duration; // Duration of audio clip
+		var music = document.getElementById('music');
+		var handle = document.getElementById('handle');
+
+		 // timeupdate Event Listener
+		music.addEventListener("timeupdate", function() {
+			console.log("Duration: " + duration);
+			console.log("Current Time: " + music.currentTime);
+			console.log("Play Percent: " + 100 * (music.currentTime / duration));
+			var playPercent = 100 * (music.currentTime / duration);
+			handle.style.marginLeft = playPercent + "%";
+			//console.log(playPercent);
+		}, false);
+
+		 // Get Duration of File
+		music.addEventListener("canplaythrough", function() {
+			duration = music.duration;
+		}, false);
+
+		 //play
+		function play() {
+			// start music
+			if (music.paused) {
+				music.play();
+				// remove play, add pause
+				$("#pButton").toggleClass("play");
+				$("#pButton").toggleClass("pause");
+			} else { // pause music
+				music.pause();
+				// remove pause, add play
+				$("#pButton").toggleClass("pause");
+				$("#pButton").toggleClass("play");
+			}
+		}
+	</script>
+</body>
+
+</html>

@@ -16,22 +16,58 @@
 			<source src="/music/onlyidreamwithyou.ogg">
 	</audio>
 	<!--Button for Playing and Pausing-->
-	<button id="pButton" class="abs-center play" onclick="play()"></button>
-
-	<div id="scrubber">
-		<div id="handle"></div>
+	<div id="audioplayer">
+		<button id="pButton" class="play" onclick="play()"></button>
+		<div id="gutter">
+			<div id="handle"></div>
+		</div>
 	</div>
-
 	<script>
 		var duration; // Duration of audio clip
-		var music = document.getElementById('music');
+		var music = document.getElementById('music'); // id for audio element
+		var gutter = document.getElementById('gutter');
 		var handle = document.getElementById('handle');
+		 //var gutterOffset = gutter.offsetLeft;
+
+		 //Makes gutter clickable
+		gutter.addEventListener("click", function(event) {
+			var clickPos = event.pageX - gutter.offsetLeft;
+			var clickPercent = clickPos / gutter.offsetWidth
+			music.currentTime = duration * clickPercent;
+		}, false);
+
+		 // Makes handle draggable 
+		handle.addEventListener('mousedown', mouseDown, false);
+		window.addEventListener('mouseup', mouseUp, false);
+
+		function mouseDown() {
+			window.addEventListener('mousemove', moveHandle, true);
+		}
+
+		function mouseUp() {
+			console.log("removeEventListener");
+			window.removeEventListener('mousemove', moveHandle, true);
+		}
+
+		function moveHandle(e) {
+			var newPos = e.pageX - gutter.offsetLeft;
+			if (newPos >= 0 && newPos <= gutter.offsetWidth) {
+				handle.style.marginLeft = e.pageX - gutter.offsetLeft + "px";
+			}
+			if (newPos < 0) {
+				handle.style.marginLeft = "0px";
+			}
+			if (newPos > gutter.offsetWidth) {
+				handle.style.marginLeft = gutter.offsetWidth + "px";
+			}
+		}
+
 
 		 // timeupdate Event Listener
 		music.addEventListener("timeupdate", function() {
-			console.log("Duration: " + duration);
-			console.log("Current Time: " + music.currentTime);
-			console.log("Play Percent: " + 100 * (music.currentTime / duration));
+			//console.log("Duration: " + duration);
+			//console.log("Current Time: " + music.currentTime);
+			//console.log("Play Percent: " + 100 * (music.currentTime / duration));
 			var playPercent = 100 * (music.currentTime / duration);
 			handle.style.marginLeft = playPercent + "%";
 			//console.log(playPercent);

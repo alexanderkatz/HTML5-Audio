@@ -5,8 +5,7 @@
 	<meta charset="utf-8">
 	<title>HTML5 Audio</title>
 	<link rel="stylesheet" type="text/css" href="css/reset.css">
-	<link rel="stylesheet" type="text/css" href="css/playButton.css">
-	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+	<link rel="stylesheet" type="text/css" href="css/audio.css">
 </head>
 
 <body>
@@ -19,85 +18,14 @@
 	<!--Audio Player Interface-->
 	<div id="audioplayer">
 		<button id="pButton" class="play" onclick="play()"></button>
-		<div id="gutter">
-			<div id="handle"></div>
+		<div id="timeline">
+			<div id="playhead"></div>
 		</div>
 	</div>
 
-	<script>
-		var duration; // Duration of audio clip
-		var music = document.getElementById('music'); // id for audio element
-		var gutter = document.getElementById('gutter');
-		var handle = document.getElementById('handle');
 
-		music.addEventListener("timeupdate", timeUpdate, false);
+	<script src="js/html5audio.js" type="text/javascript"></script>
 
-
-		 //Makes gutter clickable
-		gutter.addEventListener("click", function(event) {
-			var clickPos = event.pageX - gutter.offsetLeft;
-			var clickPercent = clickPos / gutter.offsetWidth
-			music.currentTime = duration * clickPercent;
-		}, false);
-
-		 // Makes handle draggable 
-		handle.addEventListener('mousedown', mouseDown, false);
-		window.addEventListener('mouseup', mouseUp, false);
-
-		 // mouseDown EventListener
-		function mouseDown() {
-			window.addEventListener('mousemove', moveHandle, true);
-			music.removeEventListener('timeupdate', timeUpdate, false);
-		}
-		 // mouseUp EventListener
-		function mouseUp() {
-			window.removeEventListener('mousemove', moveHandle, true);
-			music.addEventListener('timeupdate', timeUpdate, false);
-
-		}
-		 // mousemove EventListener
-		 // Moves handle as user drags
-		function moveHandle(e) {
-			var newPos = e.pageX - gutter.offsetLeft;
-			if (newPos >= 0 && newPos <= gutter.offsetWidth) {
-				handle.style.marginLeft = e.pageX - gutter.offsetLeft + "px";
-			}
-			if (newPos < 0) {
-				handle.style.marginLeft = "0px";
-			}
-			if (newPos > gutter.offsetWidth) {
-				handle.style.marginLeft = gutter.offsetWidth + "px";
-			}
-		}
-
-		 // EventListener for timeupdate
-		 // Synchronizes handle position with current point in audio 
-		function timeUpdate() {
-			var playPercent = 100 * (music.currentTime / duration);
-			handle.style.marginLeft = playPercent + "%";
-		}
-
-		 // Gets audio file duration
-		music.addEventListener("canplaythrough", function() {
-			duration = music.duration;
-		}, false);
-
-		 //Play and Pause
-		function play() {
-			// start music
-			if (music.paused) {
-				music.play();
-				// remove play, add pause
-				$("#pButton").toggleClass("play");
-				$("#pButton").toggleClass("pause");
-			} else { // pause music
-				music.pause();
-				// remove pause, add play
-				$("#pButton").toggleClass("pause");
-				$("#pButton").toggleClass("play");
-			}
-		}
-	</script>
 </body>
 
 </html>

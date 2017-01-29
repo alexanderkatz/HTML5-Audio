@@ -11,18 +11,19 @@
 <body>
 	<!--HTML5 audio-->
 	<audio id="music" preload="true">
-		<source src="/music/interlude.mp3">
-		<source src="/music/interlude.ogg">
+		<source src="music/interlude.mp3">
+		<source src="music/interlude.ogg">
 	</audio>
 
-	<!--Audio Player Interface-->
-	<div id="audioplayer">
-		<button id="pButton" class="play" onclick="play()"></button>
-		<div id="timeline">
-			<div id="playhead"></div>
+	<div id="wrapper">
+		<!--Audio Player Interface-->
+		<div id="audioplayer">
+			<button id="pButton" class="play"></button>
+			<div id="timeline">
+				<div id="playhead"></div>
+			</div>
 		</div>
 	</div>
-
 
 	<script src="js/html5audio.js" type="text/javascript"></script>
 

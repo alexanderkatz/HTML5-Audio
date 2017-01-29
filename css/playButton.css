@@ -15,7 +15,7 @@
 }
 /* Play/Pause Button */
 #pButton{
-	height:60px; 
+	height:60px;
 	width: 60px;
 	border: none;
 	background-size: 50% 50%;
@@ -24,8 +24,8 @@
 	float:left;
 }
 /*Classes for play/pause button background*/
-.play{background: url('../images/play.png') ;}
-.pause{background: url('../images/pause.png') ;}
+.play{background: url('../img/play.png') ;}
+.pause{background: url('../img/pause.png') ;}
 
 #gutter{
 	width: 400px;
@@ -44,4 +44,3 @@
 	margin-top: 1px;
 	background: rgba(0, 255, 196, 0.82);
 }
-
